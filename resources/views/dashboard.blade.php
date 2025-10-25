@@ -1,61 +1,37 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Pak Tani</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
-<body class="bg-gray-100">
+{{-- Memberi tahu Laravel untuk menggunakan file layout di layouts/app.blade.php --}}
+@extends('layouts.app')
 
-    <div class="flex h-screen bg-gray-200">
+{{-- Ini akan mengisi @yield('title') di Navbar --}}
+@section('title', 'Ringkasan Dashboard')
 
-        <aside class="w-64 bg-gray-800 text-white p-4 hidden md:block">
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-green-400">Pak Tani</h2>
-                <span class="text-sm text-gray-400">Admin Panel</span>
-            </div>
+{{-- Ini akan mengisi @yield('content') di Konten Utama --}}
+@section('content')
 
-            <nav>
-                <a href="/dashboard" class="block py-2 px-4 rounded transition duration-200 bg-gray-700 text-white">
-                    Dashboard
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Produk
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Petani (Seller)
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Pembeli (Buyer)
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Pesanan
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Pengaturan
-                </a>
-            </nav>
-        </aside>
-        <div class="flex-1 flex flex-col overflow-hidden">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-            <header class="bg-white shadow-md p-4">
-                <div class="flex justify-between items-center">
-                    <h1 class="text-xl font-semibold">@yield('title', 'Dashboard')</h1> <div>
-                        <span class="text-gray-700">Selamat datang, Admin!</span>
-                    </div>
-                </div>
-            </header>
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
-                <div class="container mx-auto">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Petani</h3>
+            <p class="text-3xl font-bold text-gray-900">12</p> </div>
 
-                    @yield('content') </div>
-            </main>
-            <footer class="bg-white p-4 text-center text-sm text-gray-600">
-                &copy; {{ date('Y') }} Pak Tani. Hak Cipta Dilindungi.
-            </footer>
-            </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Total Produk</h3>
+            <p class="text-3xl font-bold text-gray-900">84</p> </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Pesanan Baru</h3>
+            <p class="text-3xl font-bold text-green-500">5</p> </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-gray-700 mb-2">Pendapatan Hari Ini</h3>
+            <p class="text-3xl font-bold text-gray-900">Rp 1.200.000</p> </div>
+
+    </div>
+
+    <div class="mt-8 bg-white p-6 rounded-lg shadow-md">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Grafik Penjualan (Contoh)</h3>
+        <div class="h-64 bg-gray-200 rounded flex items-center justify-center">
+            <span class="text-gray-500">Tempat untuk Grafik</span>
         </div>
+    </div>
 
-</body>
-</html>
+@endsection
