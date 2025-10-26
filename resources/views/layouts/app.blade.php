@@ -12,30 +12,47 @@
 
         <aside class="w-64 bg-gray-800 text-white p-4 hidden md:block">
             <div class="mb-6">
-                <h2 class="text-2xl font-bold text-green-400">Pak Tani</h2>
+                <h2 class="text-2xl font-bold text-green-400">PAK TANI</h2>
                 <span class="text-sm text-gray-400">Admin Panel</span>
             </div>
 
             <nav>
-                <a href="/dashboard" class="block py-2 px-4 rounded transition duration-200 bg-gray-700 text-white">
-                    Dashboard
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Produk
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Petani (Seller)
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Pembeli (Buyer)
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Pesanan
-                </a>
-                <a href="#" class="block py-2 px-4 rounded transition duration-200 hover:bg-gray-700">
-                    Pengaturan
-                </a>
-            </nav>
+    <a href="/dashboard"
+       class="block py-2 px-4 rounded transition duration-200
+              {{ Request::is('dashboard') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+        Dashboard
+    </a>
+
+    <a href="/produk"
+       class="block py-2 px-4 rounded transition duration-200
+              {{ Request::is('produk*') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+        Produk
+    </a>
+
+    <a href="#"
+       class="block py-2 px-4 rounded transition duration-200
+              {{ Request::is('petani*') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+        Petani (Seller)
+    </a>
+
+    <a href="#"
+       class="block py-2 px-4 rounded transition duration-200
+              {{ Request::is('pembeli*') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+        Pembeli (Buyer)
+    </a>
+
+    <a href="#"
+       class="block py-2 px-4 rounded transition duration-200
+              {{ Request::is('pesanan*') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+        Pesanan
+    </a>
+
+    <a href="#"
+       class="block py-2 px-4 rounded transition duration-200
+              {{ Request::is('pengaturan*') ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }}">
+        Pengaturan
+    </a>
+</nav>
         </aside>
         <div class="flex-1 flex flex-col overflow-hidden">
 
@@ -43,6 +60,7 @@
                 <div class="flex justify-between items-center">
                     <h1 class="text-xl font-semibold">@yield('title', 'Dashboard')</h1> <div>
                         <span class="text-gray-700">Selamat datang, Admin!</span>
+                        <a href="" class="px-2 pt-1 pb-2  bg-red-500 text-white rounded-md  hover:bg-red-600 transition duration-200">Logout</a>
                     </div>
                 </div>
             </header>
