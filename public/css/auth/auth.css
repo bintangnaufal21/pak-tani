@@ -1,0 +1,116 @@
+/* =============================
+   Global Style
+============================= */
+:root {
+  --bg: #ffffff;
+  --card: #ffffff;
+  --accent: #597445;
+  --text-muted: #4d5247;
+  --radius: 12px;
+  --shadow: 0 6px 30px #E7F0DC;
+  font-family: Inter, sans-serif;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: linear-gradient(180deg, #E7F0DC 0%, var(--bg) 100%);
+  color: #0f172a;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* =============================
+   Card
+============================= */
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 20px;
+  font-size: 22px;
+}
+
+/* =============================
+   Form Elements
+============================= */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #e6e9ef;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* =============================
+   Buttons
+============================= */
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  padding: 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.12);
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+/* =============================
+   Text
+============================= */
+.small-text {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.small-text a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.small-text a:hover {
+  text-decoration: underline;
+}

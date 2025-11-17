@@ -1,0 +1,81 @@
+/* MAIN CONTENT */
+.main {
+  margin-left: 280px;
+  padding: 28px;
+  background: #f4f6f4;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 26px;
+  margin-bottom: 18px;
+  color: #2f4f2f;
+}
+
+/* GRID SUMMARY */
+.grid-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+  text-align: center;
+}
+
+.card h3 {
+  margin: 0;
+  color: #2f4f2f;
+  font-size: 16px;
+}
+
+.card .number {
+  margin-top: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #1f3f1f;
+}
+
+/* SECTION TITLE */
+.section-title {
+  margin-top: 35px;
+  font-size: 20px;
+  color: #2f4f2f;
+}
+
+/* TABLE */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.table th,
+.table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background: #e8eee8;
+  text-align: left;
+  font-weight: 600;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 6px;
+  color: white;
+  font-size: 12px;
+}
+
+.status.selesai { background: #2ecc71; }
+.status.dikirim { background: #3498db; }
+.status.proses { background: #f39c12; }

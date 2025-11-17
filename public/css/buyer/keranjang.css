@@ -1,0 +1,121 @@
+/* IMPORT FONT */
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+
+body {
+    font-family: "Raleway", sans-serif;
+    margin: 0;
+    background: #ffffff;
+    padding-bottom: 70px;
+  
+}
+
+.top-header {
+  font-family: "Kaushan Script", serif;
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+  line-height: 0.6;
+  letter-spacing: 2px;
+  background: #E7F0DC;
+  padding: 39px 20px;
+  text-align: center;
+  color: #597445;
+}
+
+/* WRAPPER BESAR */
+.cart-wrapper {
+  font-family: "Raleway", sans-serif;
+  display: flex;
+  gap: 25px;
+  padding: 20px;
+  align-items: flex-start;
+}
+
+/* GRID PRODUK */
+.cart-container {
+  flex: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+}
+
+/* CARD PRODUK */
+.cart-item {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.price {
+  margin-top: 5px;
+  color: #729762;
+  font-weight: bold;
+}
+
+.qty-box {
+  display: flex;
+  margin-top: 10px;
+}
+
+.qty-box button {
+  background: #E7F0DC;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
+/* SUMMARY */
+.summary-box {
+  flex: 1;
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 20px;
+}
+
+.summary-line,
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 20px; /* Biar ada jarak sebelum tombol */
+}
+
+/* TOMBOL */
+.checkout-btn {
+  display: block;
+  text-align: center;
+  background: #4e6a39;
+  color: white;
+  padding: 12px 0;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.checkout-btn:hover {
+  background: #3e572f;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .cart-wrapper {
+    flex-direction: column;
+  }
+}

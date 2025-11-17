@@ -1,0 +1,181 @@
+/* IMPORT FONT */
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap');
+
+body {
+  margin: 0;
+  background: #ffffff;
+  font-family: "Raleway", sans-serif;
+  padding-bottom: 70px;
+}
+
+/* HEADER */
+.header {
+  font-family: "Kaushan Script", serif;
+  margin-bottom: 5px;
+  font-size: 1.3rem;
+  line-height: 0.6;
+  letter-spacing: 2px;
+  background: #E7F0DC;
+  padding: 52px 20px;
+  text-align: center;
+  color: #597445;
+}
+
+/* WRAPPER 2 KOLOM */
+.checkout-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  max-width: 1250px;
+  margin-top: 10px;
+  margin: auto;
+}
+
+/* LEFT SIDE */
+.left-form {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+h2 {
+  margin-top: 0;
+  color: #4e6a39;
+}
+
+.subtitle {
+  color: #4e6a39;
+}
+
+/* FORM GRID */
+.form-grid {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full {
+  grid-column: span 2;
+}
+
+label {
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+input {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #c9d7c2;
+  font-size: 0.9rem;
+}
+
+/* Upload Box */
+.upload-box {
+  padding: 12px;
+  background: #f3f7ec;
+  border: 1px dashed #94a78a;
+  border-radius: 10px;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: #6b7f5a;
+  margin-top: -5px;
+}
+
+.divider {
+  margin: 25px 0;
+  border: none;
+  border-top: 1px solid #e0ebd8;
+}
+
+/* RIGHT PANEL */
+.right-summary {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.shipping-box {
+  margin-bottom: 25px;
+}
+
+/* Shipping Radio Item */
+.ship-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid #dce8d5;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.ship-option:hover {
+  background: #f2f7ed;
+}
+
+.ship-option input {
+  width: 16px;
+  height: 16px;
+}
+
+.ship-info {
+  flex: 1;
+}
+
+.ship-info span {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+.ship-option .price {
+  font-weight: bold;
+  color: #4e6a39;
+}
+
+/* SUMMARY */
+.summary-box {
+  border-top: 2px solid #e5efdd;
+  padding-top: 12px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.row.total {
+  font-size: 1.15rem;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.btn-pay {
+  width: 100%;
+  background: #658147;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.btn-pay:hover {
+  background: #597445;
+}

@@ -1,0 +1,113 @@
+.detail-container {
+  padding: 100px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  text-align: left;  /* karena layout horizontal */
+}
+
+.detail-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.detail-img {
+  width: 100%;
+  max-width: 260px;
+  border-radius: 15px;
+}
+
+/* BAGIAN KANAN */
+.detail-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.detail-right h2 {
+  font-size: 1.8em;
+  margin: 5px 0;
+}
+
+.price {
+  color: #2e7d32;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.stok {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 8px 0;
+  color: #2e7d32;
+}
+
+.desc {
+  font-size: 0.95em;
+  margin-bottom: 15px;
+}
+
+/* SELLER BOX */
+.seller-box {
+  background: #f3f8ee;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.seller-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #dce8d1;
+}
+
+.seller-info h3 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.seller-info p {
+  margin: 2px 0 0;
+  font-size: 0.85em;
+  color: #555;
+}
+
+/* BUTTON */
+.btn-cart {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+.btn-cart:hover {
+  background-color: #388E3C;
+}
+
+/* RESPONSIVE (HP) */
+@media(max-width: 600px) {
+  .detail-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .detail-right {
+    text-align: center;
+  }
+
+  .seller-box {
+    justify-content: center;
+    text-align: left;
+  }
+}

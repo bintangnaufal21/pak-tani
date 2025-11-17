@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
+.profile-container {
+  max-width: 400px;
+  margin: 60px auto;
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+
+.avatar {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ddd;
+}
+
+/* NAMA & EMAIL */
+.user-info h2 {
+  font-size: 1.4rem;
+  margin-bottom: 5px;
+}
+
+.user-info p {
+  margin: 0;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* LOGOUT BUTTON */
+.btn-logout {
+  display: inline-block;
+  margin-top: 30px;
+  background: #d9534f;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  background: #c9302c;
+}

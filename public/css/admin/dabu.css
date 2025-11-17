@@ -1,0 +1,62 @@
+/* ===== CONTENT AREA ===== */
+.content{
+  margin-left:260px;
+  padding:30px;
+  background:#f5f7f5;
+  min-height:100vh;
+}
+
+.content h2{
+  margin-top:0;
+  margin-bottom:20px;
+  font-size:24px;
+  font-weight:700;
+  color:#2c3e2c;
+}
+
+/* ===== TABLE STYLE ===== */
+.table-wrapper{
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+  box-shadow:0 3px 12px rgba(0,0,0,0.08);
+  overflow-x:auto;
+}
+
+.buyer-table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.buyer-table th{
+  background:#2f4f2f;
+  color:#fff;
+  padding:12px;
+  text-align:left;
+  font-weight:600;
+}
+
+.buyer-table td{
+  padding:12px;
+  border-bottom:1px solid #e8e8e8;
+}
+
+.buyer-table tr:hover{
+  background:#f0f7f0;
+}
+
+/* ===== BUTTON RIWAYAT ===== */
+.btn-riwayat{
+  display:inline-block;
+  padding:6px 12px;
+  background:#2f4f2f;
+  color:#fff;
+  border-radius:6px;
+  text-decoration:none;
+  font-size:14px;
+  transition:.2s;
+}
+
+.btn-riwayat:hover{
+  background:#3e5f3e;
+}

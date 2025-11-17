@@ -1,0 +1,77 @@
+/* ===== CONTENT LAYOUT ===== */
+.content {
+  margin-left: 260px;
+  padding: 25px;
+  min-height: 100vh;
+  background: #f5f7f5;
+}
+
+.content h2 {
+  margin-bottom: 25px;
+  color: #2f4f2f;
+}
+
+.setting-section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.setting-section h3 {
+  margin-bottom: 15px;
+  color: #3d6b3d;
+}
+
+/* TABLE AKUN ADMIN */
+.setting-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.setting-table th {
+  background: #e7efe7;
+  padding: 12px;
+  text-align: left;
+  color: #2f4f2f;
+}
+
+.setting-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.btn-edit {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-edit:hover {
+  background: #45a049;
+}
+
+/* Logout button di kanan bawah */
+.btn-logout {
+  position: absolute;
+  bottom: 20px;   /* jarak dari bawah */
+  right: 20px;    /* jarak dari kanan */
+  padding: 10px 18px;
+  background: #e74c3c;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+}
+

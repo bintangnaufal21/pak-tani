@@ -1,0 +1,74 @@
+/* CONTENT LAYOUT */
+.content {
+  margin-left: 260px;
+  padding: 25px;
+  min-height: 100vh;
+  background: #f5f7f5;
+  position: relative; /* penting untuk tombol absolute */
+}
+
+h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.table-wrapper {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.produk-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.produk-table th,
+.produk-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #e5e5e5;
+  text-align: left;
+}
+
+.produk-table th {
+  background: #f4f6f8;
+  font-weight: bold;
+  color: #444;
+}
+
+.btn-edit,
+.btn-hapus {
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background: #3498db;
+  color: white;
+  margin-right: 8px;
+}
+
+.btn-hapus {
+  background: #e74c3c;
+  color: white;
+}
+/* Tombol Logout kanan bawah */
+.btn-logout {
+  position: absolute;
+  bottom: 20px;   /* jarak dari bawah content */
+  right: 20px;    /* jarak dari kanan content */
+  padding: 10px 18px;
+  background: #e74c3c;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  background: #c0392b;
+}
