@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Data Buyer Admin">
   <!-- PAGE CONTENT -->
-  <main class="content">
+  <main class="main">
       <h2>Data Buyer</h2>
 
       <div class="table-wrapper">

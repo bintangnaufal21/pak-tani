@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Data Seller Admin">
   <!-- PAGE CONTENT -->
-  <main class="content">
+  <main class="main">
       <h2>Data Seller</h2>
 
       <div class="table-wrapper">

@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Detail Seller">
   <!-- PAGE CONTENT -->
-  <main class="content">
+  <main class="main">
 
     <h2>Detail Seller</h2>
 

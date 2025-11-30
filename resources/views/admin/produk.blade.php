@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Produk Admin">
   <!-- CONTENT -->
-  <main class="content">
+  <main class="main">
     <h2>Produk Seller</h2>
 
     <div class="table-wrapper">

@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Laporan Admin">
   <!-- PAGE CONTENT -->
-  <main class="content">
+  <main class="main">
       <h2>Laporan</h2>
 
       <!-- LAPORAN TRANSAKSI -->

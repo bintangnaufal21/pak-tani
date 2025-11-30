@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Helpers\OrderData;
 
 // Halaman login
 Route::get('/login', function() {return view('auth.login');})->name('login');
@@ -38,3 +39,46 @@ Route::get('/admin/pesanan', function(){return view('admin.pesanan');})->name('a
 Route::get('/admin/keuangan', function(){return view('admin.keuangan');})->name('admin.keuangan');
 Route::get('/admin/laporan', function(){return view('admin.laporan');})->name('admin.laporan');
 Route::get('/admin/pengaturan', function(){return view('admin.pengaturan');})->name('admin.pengaturan');
+
+// ===============================
+// SELLER ROUTES (STATIC VIEW)
+// ===============================
+
+    // Dashboard Seller
+    Route::get('/seller', function () {
+        return view('seller.dashboard');
+    })->name('dashboard');
+
+    // Produk
+    Route::get('/produk', function () {
+        return view('seller.produk.index');
+    })->name('produk.index');
+
+    Route::get('/produk/create', function () {
+        return view('seller.produk.create');
+    })->name('produk.create');
+
+    Route::get('/produk/edit', function () {
+        return view('seller.produk.edit');
+    })->name('produk.edit');
+
+    // Pesanan Buyer
+    Route::get('/orders', function () {
+    $orders = OrderData::all();
+    return view('seller.orders.index', compact('orders'));
+    })->name('orders.index');
+
+    // Detail pesanan
+    Route::get('/orders/{id}', function ($id) {
+        $order = OrderData::find($id);
+        return view('seller.orders.show', compact('order'));
+    })->name('orders.show');
+    // Riwayat Penjualan
+    Route::get('/history', function () {
+        return view('seller.history');
+    })->name('history');
+
+    // Profil Seller
+    Route::get('/profil', function () {
+        return view('seller.profil');
+    })->name('profil');

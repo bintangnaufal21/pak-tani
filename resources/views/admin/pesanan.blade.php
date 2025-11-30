@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Pesanan Admin">
   <!-- CONTENT -->
-  <main class="content">
+  <main class="main">
     <h2>Daftar Pesanan</h2>
 
     <div class="table-wrapper">

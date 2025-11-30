@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Pengaturan Admin">
   <!-- PAGE CONTENT -->
-  <main class="content">
+  <main class="main">
       <h2>Pengaturan Admin</h2>
 
       <!-- DATA AKUN ADMIN -->

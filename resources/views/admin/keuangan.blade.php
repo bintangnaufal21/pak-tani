@@ -1,6 +1,6 @@
 <x-layoutAdmin title="Keuangan Admin">
   <!-- PAGE CONTENT -->
-  <main class="content">
+  <main class="main">
       <h2>Keuangan / Transaksi</h2>
 
       <!-- DANA MASUK -->
