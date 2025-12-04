@@ -1,55 +1,167 @@
 <x-layoutBuyer title="Keranjang Saya">
-  <header class="top-header">
-    <h2>Keranjang Saya</h2>
-  </header>
 
-<div class="cart-wrapper">
+    <section class="cart-page">
 
-  <!-- PRODUK -->
-  <div class="cart-container">
-      <div class="cart-item">
-        <img src="/images/paprika.jpeg" alt="Paprika">
-        <div class="info">
-          <h3>Paprika</h3>
-          <div class="price">Rp 8.000</div>
+        <h2 class="cart-title">Keranjang Belanja</h2>
+
+        <div class="cart-grid">
+
+            {{-- LIST PRODUK --}}
+            <div class="cart-items">
+
+                @forelse($items as $item)
+                    <div class="cart-card">
+
+                        <img
+                            src="{{ $item->product->image_path ? asset('storage/' . $item->product->image_path) : 'https://via.placeholder.com/80' }}">
+
+                        <div class="cart-info">
+                            <h3>{{ $item->product->name }}</h3>
+                            <p class="price">Rp {{ number_format($item->product->price, 0, ',', '.') }}</p>
+                            <p class="qty">Qty: <strong>{{ $item->quantity }} {{ $item->product->unit }}</strong></p>
+                        </div>
+
+                        {{-- 🔺 AREA ACTIONS (QTY + DELETE) --}}
+                        <div class="cart-actions">
+
+                            {{-- minus / plus qty --}}
+                            <form action="{{ route('buyer.keranjang.update', $item->id) }}" method="POST"
+                                class="qty-box">
+                                @csrf
+                                @method('PATCH')
+
+                                <button type="submit" name="type" value="minus" class="qty-btn">−</button>
+                                <span>{{ $item->quantity }}</span>
+                                <button type="submit" name="type" value="plus" class="qty-btn">+</button>
+                            </form>
+
+                            {{-- hapus item --}}
+                            <form action="{{ route('buyer.keranjang.delete', $item->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="delete-btn">🗑</button>
+                            </form>
+
+                        </div>
+
+
+                    </div>
+                @empty
+                    <p class="empty-cart">Keranjang masih kosong, yuk belanja dulu 🌾</p>
+                @endforelse
+
+
+            </div>
+
+            {{-- SUMMARY --}}
+            <div class="cart-summary">
+
+                <h3>Ringkasan Pesanan</h3>
+
+                <p class="sum-row"><span>Subtotal</span> <span>Rp {{ number_format($subtotal, 0, ',', '.') }}</span></p>
+
+                <hr>
+
+                <p class="sum-total"><span>Total</span> <strong>Rp
+                        {{ number_format($subtotal) }}</strong></p>
+
+                <a href="{{ route('buyer.checkout') }}" class="checkout-btn">Checkout Sekarang</a>
+
+            </div>
+
         </div>
-        <div class="qty-box">
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
-        </div>
-      </div>
+    </section>
 
-      <div class="cart-item">
-        <img src="/images/timun.jpeg" alt="Timun">
-        <div class="info">
-          <h3>Timun</h3>
-          <div class="price">Rp 10.000</div>
-        </div>
-        <div class="qty-box">
-          <button>-</button>
-          <span>1</span>
-          <button>+</button>
-        </div>
-      </div>
+    <style>
+        .cart-title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin: 25px 0;
+            color: #466536;
+        }
 
+        .cart-page {
+            padding: 20px 8%;
+        }
 
+        /* GRID UTAMA */
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
 
-      <!-- tambahkan item lainnya -->
-  </div>
+        /* ITEM DI KIRI */
+        .cart-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .05);
+            margin-bottom: 15px;
+        }
 
-  <!-- SUMMARY -->
-  <div class="summary-box">
-      <h3>Order Summary</h3>
+        .cart-card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
 
-      <div class="summary-line"><span>Sub Total</span><span>Rp 18.000</span></div>
-      <div class="summary-line"><span>Delivery fee</span><span>Rp 10.000</span></div>
+        .cart-info h3 {
+            margin: 0 0 4px;
+            font-size: 18px;
+            font-weight: 600;
+        }
 
-      <hr>
+        .price {
+            color: #368438;
+            font-weight: 600;
+        }
 
-      <div class="summary-total"><span>Total</span><span>Rp 28.000</span></div>
+        .qty {
+            font-size: 13px;
+            color: #666
+        }
 
-      <a href="{{ route('buyer.co')}}" class="checkout-btn">Checkout Now</a>
-  </div>
-</div>
+        /* SUMMARY */
+        .cart-summary {
+            background: white;
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+        }
+
+        .sum-row,
+        .sum-total {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .sum-total strong {
+            font-size: 18px;
+            color: #2e6d32
+        }
+
+        .checkout-btn {
+            display: block;
+            margin-top: 18px;
+            background: #22c55e;
+            text-align: center;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .checkout-btn:hover {
+            background: #19a74e
+        }
+    </style>
+
 </x-layoutBuyer>

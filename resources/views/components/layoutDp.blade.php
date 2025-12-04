@@ -14,7 +14,7 @@
 
   <!-- BOTTOM NAVBAR -->
   <nav class="bottom-nav">
-    <a href="{{ route('buyer.buyer') }}" class="active">🏠<span>Beranda</span></a>
+    <a href="{{ route('buyer.home') }}" class="active">🏠<span>Beranda</span></a>
     <a href="{{ route('buyer.produk')}}">🛍️<span>Produk</span></a>
     <a href="{{ route('buyer.keranjang')}}">🛒<span>Keranjang</span></a>
     <a href="{{ route('buyer.pesanan')}}">📦<span>Pesanan</span></a>

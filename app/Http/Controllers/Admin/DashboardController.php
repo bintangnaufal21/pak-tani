@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function keuangan(){
+
+        return view('admin.keuangan');
+    }
+
+    public function laporan(){
+        return view('admin.laporan');
+    }
+
+    public function pengaturan(){
+        return view('admin.pengaturan');
+    }
+}

@@ -22,7 +22,7 @@
             </tr>
           </tbody>
         </table>
-        <a href="#" class="btn-logout">Logout</a>
+       
       </div>
     </main>
 </x-layoutAdmin>

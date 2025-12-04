@@ -31,12 +31,11 @@
 
     <ul class="nav-list">
       <li><a href="{{ route('admin.dashboard')}}" class="nav-link"><span class="icon">📊</span> Dashboard</a></li>
-      <li><a href="{{ route('admin.dabu')}}" class="nav-link"><span class="icon">🧑‍🤝‍🧑</span> Data Buyer</a></li>
+      <li><a href="{{ route('admin.buyer')}}" class="nav-link"><span class="icon">🧑‍🤝‍🧑</span> Data Buyer</a></li>
       <li><a href="{{ route('admin.dataseller')}}" class="nav-link"><span class="icon">🏬</span> Data Seller</a></li>
-      <li><a href="{{ route('admin.produk')}}" class="nav-link"><span class="icon">📦</span> Produk</a></li>
-      <li><a href="{{ route('admin.pesanan')}}" class="nav-link"><span class="icon">📄</span> Pesanan</a></li>
       <li><a href="{{ route('admin.keuangan')}}" class="nav-link"><span class="icon">💰</span> Keuangan</a></li>
       <li><a href="{{ route('admin.laporan')}}" class="nav-link"><span class="icon">📑</span> Laporan</a></li>
+      <li><a href="{{ route('admin.orders')}}" class="nav-link"><span class="icon">📑</span> Order</a></li>
       <li><a href="{{ route('admin.pengaturan')}}" class="nav-link"><span class="icon">⚙️</span> Pengaturan</a></li>
     </ul>
   </aside>

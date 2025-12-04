@@ -153,4 +153,38 @@ body {
   font-weight: bold;
   font-size: 1.1rem;
 }
+.product-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.btn-detail,
+.btn-cart {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+/* Detail */
+.btn-detail {
+    background: #555;
+    color: #fff;
+}
+.btn-detail:hover {
+    background: #333;
+}
+
+/* Keranjang */
+.btn-cart {
+    background: #28a745;
+    color: #fff;
+}
+.btn-cart:hover {
+    background: #1e8e3e;
+}
 
