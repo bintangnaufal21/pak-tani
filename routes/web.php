@@ -9,22 +9,32 @@ use App\Http\Controllers\Admin\SellerController;
 use App\Http\Controllers\Buyer\CartController;
 use App\Http\Controllers\Buyer\OrderController as BuyerOrderController;
 use App\Http\Controllers\Buyer\ProductViewController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\Seller\OrderController as SellerOrderController;
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProfileController;
 use App\Http\Controllers\Seller\StoreController;
+use App\Http\Controllers\NotificationController;
 
+
+
+Route::get('/', [GuestController::class, 'index'])->name('guest');
 /* Auth */
-
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.perform');
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.readAll');
+});
+
 /* Buyer */
 Route::prefix('buyer')->name('buyer.')->middleware(['auth'])->group(function () {
-    Route::get('/home', [ProductViewController::class, 'home'])->name('home');
+    Route::get('/', [ProductViewController::class, 'home'])->name('home');
     Route::get('/produk', [ProductViewController::class, 'index'])->name('produk');
     Route::get('/produk/{product}', [ProductViewController::class, 'show'])->name('produk.detail');
 
@@ -55,6 +65,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
     Route::get('/data/buyer', [BuyerController::class, 'index'])->name('buyer');
     Route::get('/data/seller', [SellerController::class, 'index'])->name('dataseller');
+    Route::get('/data/seller/detail', [SellerController::class, 'show'])->name('sellerdetail');
     Route::get('/data/keungan', [DashboardController::class, 'keuangan'])->name('keuangan');
     Route::get('/laporan', [DashboardController::class, 'laporan'])->name('laporan');
     Route::get('/pengaturan', [DashboardController::class, 'pengaturan'])->name('pengaturan');
@@ -62,7 +73,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
 
 /* Seller */
 Route::prefix('seller')->name('seller.')->middleware(['auth', 'role:seller,admin'])->group(function () {
-    Route::get('/', fn() => view('seller.dashboard'))->name('dashboard');
+
+    Route::get('/', [SellerOrderController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/orders', [SellerOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}', [SellerOrderController::class, 'show'])->name('orders.show');
@@ -80,6 +92,6 @@ Route::prefix('seller')->name('seller.')->middleware(['auth', 'role:seller,admin
     Route::get('/profil', [ProfileController::class, 'edit'])->name('profil');
     Route::put('/profil', [ProfileController::class, 'update'])->name('profil.update');
 
-    // di dalam seller group (paling bawah dalam group seller)
-    Route::view('/history', 'seller.history')->name('history');
+    //History
+    Route::get('/riwayat', [SellerOrderController::class, 'history'])->name('history');
 });

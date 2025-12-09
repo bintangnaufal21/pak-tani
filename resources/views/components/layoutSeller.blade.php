@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Safety for disabled buttons */
@@ -61,38 +61,46 @@
 
                 <h2 class="text-3xl font-bold text-gray-800">{{ $title }}</h2>
 
-                {{-- USER DROPDOWN --}}
-                <div class="relative">
-                    <button id="user-menu-button" type="button"
-                        class="flex items-center gap-2 bg-white px-3 py-2 rounded-full shadow hover:bg-gray-50">
-                        <div
-                            class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                            {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                {{-- RIGHT: notifications + USER DROPDOWN --}}
+                <div class="flex items-center gap-4">
+
+                    <div class="mr-3 inline-block align-middle">
+                        <x-notification-bell />
+                    </div>
+                    {{-- USER DROPDOWN --}}
+                    <div class="relative">
+                        <button id="user-menu-button" type="button"
+                            class="flex items-center gap-2 bg-white px-3 py-2 rounded-full shadow hover:bg-gray-50">
+                            <div
+                                class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+                                {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
+                            </div>
+                            <span class="font-semibold text-gray-700">{{ auth()->user()->name }}</span>
+                            <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div id="user-menu-dropdown"
+                            class="hidden absolute right-0 mt-2 w-44 bg-white shadow-lg border rounded-lg overflow-hidden z-20">
+
+                            <a href="{{ route('seller.profil') }}" class="block px-4 py-2 hover:bg-gray-100 text-sm">
+                                👤 Profil
+                            </a>
+
+                            <a href="{{ route('buyer.home') }}" class="block px-4 py-2 hover:bg-gray-100 text-sm">
+                                🏠 Ke Buyer
+                            </a>
+
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 hover:bg-red-100 text-red-600 text-sm">
+                                    🚪 Logout
+                                </button>
+                            </form>
                         </div>
-                        <span class="font-semibold text-gray-700">{{ auth()->user()->name }}</span>
-                        <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-
-                    <div id="user-menu-dropdown"
-                        class="hidden absolute right-0 mt-2 w-44 bg-white shadow-lg border rounded-lg overflow-hidden z-20">
-
-                        <a href="{{ route('seller.profil') }}" class="block px-4 py-2 hover:bg-gray-100 text-sm">
-                            👤 Profil
-                        </a>
-
-                        <a href="{{ route('buyer.home') }}" class="block px-4 py-2 hover:bg-gray-100 text-sm">
-                            🏠 Ke Buyer
-                        </a>
-
-                        <form action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                class="w-full text-left px-4 py-2 hover:bg-red-100 text-red-600 text-sm">
-                                🚪 Logout
-                            </button>
-                        </form>
                     </div>
                 </div>
 
@@ -120,9 +128,7 @@
                 menu.classList.add('hidden');
             });
         });
-
     </script>
-
 
 </body>
 

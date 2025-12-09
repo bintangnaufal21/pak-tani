@@ -1,38 +1,42 @@
 <x-layoutBuyer title="Profil Buyer">
-  <section class="profile-container">
+    <section class="profile-container">
 
-    {{-- DATA USER --}}
-    <div class="user-info">
-      <h2>{{ auth()->user()->name }}</h2>
-      <p>{{ auth()->user()->email }}</p>
-      <p class="role-text">Role: {{ ucfirst(auth()->user()->role) }}</p>
-    </div>
+        {{-- DATA USER --}}
 
-    {{-- AKSI BERDASARKAN ROLE --}}
-    <div class="profile-actions">
+        <div class="user-info">
+            <x-notification-bell />
+            <h2>{{ auth()->user()->name }}</h2>
+            <p>{{ auth()->user()->email }}</p>
+            <p class="role-text">Role: {{ ucfirst(auth()->user()->role) }}</p>
+        </div>
 
-      {{-- Jika masih BUYER, tampilkan tombol Buka Toko --}}
-      @if(auth()->user()->role === 'buyer')
-        <a href="{{ route('buyer.buka-toko') }}" class="btn-primary">
-          🌱 Buka Toko & Jadi Seller
-        </a>
-      @endif
+        </div>
 
-      {{-- Jika sudah SELLER, tampilkan tombol ke Dashboard Seller --}}
-      @if(auth()->user()->role === 'seller')
-        <a href="{{ route('seller.dashboard') }}" class="btn-secondary">
-          🏬 Pergi ke Dashboard Seller
-        </a>
-      @endif
+        {{-- AKSI BERDASARKAN ROLE --}}
+        <div class="profile-actions">
 
-      {{-- Tombol logout --}}
-      <form action="{{ route('logout') }}" method="POST" class="logout-form">
-        @csrf
-        <button type="submit" class="btn-logout">
-          🚪 Logout
-        </button>
-      </form>
-    </div>
+            {{-- Jika masih BUYER, tampilkan tombol Buka Toko --}}
+            @if (auth()->user()->role === 'buyer')
+                <a href="{{ route('buyer.buka-toko') }}" class="btn-primary">
+                    🌱 Buka Toko & Jadi Seller
+                </a>
+            @endif
 
-  </section>
+            {{-- Jika sudah SELLER, tampilkan tombol ke Dashboard Seller --}}
+            @if (auth()->user()->role === 'seller')
+                <a href="{{ route('seller.dashboard') }}" class="btn-secondary">
+                    🏬 Pergi ke Dashboard Seller
+                </a>
+            @endif
+
+            {{-- Tombol logout --}}
+            <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                @csrf
+                <button type="submit" class="btn-logout">
+                    🚪 Logout
+                </button>
+            </form>
+        </div>
+
+    </section>
 </x-layoutBuyer>
