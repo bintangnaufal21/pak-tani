@@ -6,71 +6,68 @@
 
 <x-dynamic-component :component="$componentName" :title="'Notifikasi'">
 
+    <div class="max-w-3xl mx-auto p-4">
 
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">🔔 Semua Notifikasi</h2>
 
-    {{-- isi notifikasi ditempatkan dalam slot layout component --}}
-    <div class="max-w-5xl mx-auto p-6">
-         @if (session('success'))
-        <div class="bg-green-100 text-green-700 p-2 rounded mb-3">
-            {{ session('success') }}
+            <form action="{{ route('notifications.readAll') }}" method="POST">
+                @csrf
+                <button class="text-sm text-blue-600 underline">Tandai semua dibaca</button>
+            </form>
         </div>
-    @endif
 
-    @if (session('error'))
-        <div class="bg-red-100 text-red-700 p-2 rounded mb-3">
-            {{ session('error') }}
-        </div>
-    @endif
-        <div class="flex items-center justify-between mb-4">
-            <h1 class="text-2xl font-bold">Notifikasi</h1>
-
-            <div class="flex items-center gap-3">
-                <form method="POST" action="{{ route('notifications.readAll') }}">
-                    @csrf
-                    <button type="submit" class="px-3 py-1 border rounded text-sm">Tandai semua dibaca</button>
-                </form>
-
-                <a href="{{ $backRoute }}" class="px-3 py-1 bg-green-600 text-white rounded text-sm">Kembali</a>
+        @if ($notifications->isEmpty())
+            <div class="text-gray-500 text-center mt-10">
+                Tidak ada notifikasi.
             </div>
-        </div>
+        @else
+            <div class="space-y-3">
+                @foreach ($notifications as $notif)
+                    <div class="p-4 border rounded-lg {{ $notif->read_at ? 'bg-gray-100' : 'bg-yellow-50' }}">
 
-        <div class="bg-white rounded shadow-sm p-4">
-            @if ($notifications->isEmpty())
-                <p class="text-gray-600">Belum ada notifikasi.</p>
+                        <div class="font-semibold">
+                            {{ $notif->data['title'] ?? 'Notifikasi' }}
+                        </div>
+
+                        <div class="text-sm text-gray-700 mt-1">
+                            {{ $notif->data['message'] ?? '-' }}
+                        </div>
+
+                        <div class="text-xs text-gray-500 mt-2">
+                            {{ $notif->created_at->diffForHumans() }}
+                        </div>
+
+                        @if (!$notif->read_at)
+                            <form action="{{ route('notifications.read', $notif->id) }}" method="POST" class="mt-2">
+                                @csrf
+                                <button class="text-xs text-green-600 underline">
+                                    Tandai dibaca
+                                </button>
+                            </form>
+                        @endif
+
+                    </div>
+                @endforeach
+            </div>
+        @endif
+
+        <div class="mt-6">
+            @php
+                $role = auth()->user()->role;
+            @endphp
+
+            @if ($role === 'admin')
+                <a href="{{ route('admin.dashboard') }}" class="text-blue-600 underline">⬅ Kembali ke Dashboard
+                    Admin</a>
+            @elseif ($role === 'seller')
+                <a href="{{ route('seller.dashboard') }}" class="text-blue-600 underline">⬅ Kembali ke Dashboard
+                    Seller</a>
             @else
-                <ul class="space-y-3">
-                    @foreach ($notifications as $n)
-                        <li
-                            class="p-3 rounded border {{ is_null($n->read_at) ? 'bg-slate-50 border-slate-200' : 'bg-white' }}">
-                            <div class="flex justify-between items-start">
-                                <div>
-                                    <div class="font-semibold">{{ $n->title ?? 'Notifikasi' }}</div>
-                                    <div class="text-sm text-gray-600 mt-1">{{ $n->body }}</div>
-                                    <div class="text-xs text-gray-400 mt-2">{{ $n->created_at->format('d M Y H:i') }}
-                                    </div>
-                                </div>
-
-                                <div class="flex flex-col items-end gap-2">
-                                    @if (is_null($n->read_at))
-                                        <form method="POST" action="{{ route('notifications.read', $n->id) }}">
-                                            @csrf
-                                            <button type="submit"
-                                                class="px-2 py-1 bg-indigo-600 text-white rounded text-xs">Tandai</button>
-                                        </form>
-                                    @else
-                                        <span class="text-xs text-gray-400">Dibaca</span>
-                                    @endif
-                                </div>
-                            </div>
-                        </li>
-                    @endforeach
-                </ul>
-
-                <div class="mt-4">
-                    {{ $notifications->links() }}
-                </div>
+                <a href="{{ route('buyer.profile') }}" class="text-blue-600 underline">⬅ Kembali ke Profil</a>
             @endif
         </div>
+
     </div>
 
 </x-dynamic-component>

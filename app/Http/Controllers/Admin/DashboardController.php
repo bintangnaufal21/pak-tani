@@ -3,29 +3,42 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
-    }
+        // TOTAL PESANAN
+        $totalOrders = Order::count();
 
-    public function keuangan(){
+        // TOTAL BUYER
+        $totalBuyer = User::where('role', 'buyer')->count();
 
-        return view('admin.keuangan');
-    }
+        // TOTAL SELLER
+        $totalSeller = User::where('role', 'seller')->count();
 
-    public function laporan(){
-        return view('admin.laporan');
-    }
+        // TOTAL PENJUALAN (yang sudah dibayar)
+        $totalSales = Order::where('payment_status', 'paid')->sum('total');
 
-    public function pengaturan(){
+        // TOTAL TRANSAKSI
+        $totalTransactions = Order::count();
 
-        $admin = Auth::user();
-        return view('admin.pengaturan', compact('admin'));
+        // PESANAN TERBARU (5 TERAKHIR)
+        $latestOrders = Order::with(['user', 'items.product.user'])
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('admin.dashboard', compact(
+            'totalOrders',
+            'totalBuyer',
+            'totalSeller',
+            'totalSales',
+            'totalTransactions',
+            'latestOrders'
+        ));
     }
 }

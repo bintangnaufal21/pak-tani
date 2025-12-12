@@ -1,90 +1,87 @@
-<x-layoutAdmin title="Detail Seller">
-  <!-- PAGE CONTENT -->
-  <main class="main">
+<x-layoutAdmin title="Detail Seller - {{ $user->store_name ?? $user->name }}">
+    <main class="main">
+        <h2>Detail Seller</h2>
 
-    <h2>Detail Seller</h2>
+        @if (session('success'))
+            <div class="p-3 bg-green-50 text-green-800 rounded mb-4">{{ session('success') }}</div>
+        @endif
 
-    <!-- INFORMASI SELLER -->
-    <div class="seller-box">
-        <h3>Informasi Seller</h3>
+        <div class="seller-box">
+            <h3>Informasi Seller</h3>
 
-        <div class="info-row">
-            <div class="info-item">
-                <label>Nama Toko:</label>
-                <p>Toko Maju Jaya</p>
-            </div>
+            <div class="info-row">
+                <div class="info-item">
+                    <label>Nama Toko:</label>
+                    <p>{{ $user->store_name ?? '-' }}</p>
+                </div>
 
-            <div class="info-item">
-                <label>Email:</label>
-                <p>maju@gmail.com</p>
-            </div>
+                <div class="info-item">
+                    <label>Email:</label>
+                    <p>{{ $user->email }}</p>
+                </div>
 
-            <div class="info-item">
-                <label>No HP:</label>
-                <p>081234567890</p>
-            </div>
+                <div class="info-item">
+                    <label>No HP:</label>
+                    <p>{{ $user->phone ?? '-' }}</p>
+                </div>
 
-            <div class="info-item">
-                <label>Status Toko:</label>
+                <div class="info-item">
+                    <label>Status Toko:</label>
 
-                <form method="GET" action="#" class="status-form">
-                    <select>
-                      <option value="aktif">Aktif</option>
-                      <option value="non">Non-Aktif</option>
-                    </select>
+                    <form method="POST" action="{{ route('admin.sellers.updateStatus', $user->id) }}"
+                        class="status-form inline-flex items-center">
+                        @csrf
+                        <select name="store_status" class="p-2 border rounded mr-2">
+                            <option value="active" {{ ($user->store_status ?? '') === 'active' ? 'selected' : '' }}>
+                                Aktif</option>
+                            <option value="inactive" {{ ($user->store_status ?? '') === 'inactive' ? 'selected' : '' }}>
+                                Non-Aktif</option>
+                        </select>
 
-                    <button type="submit" class="btn-save-status">Simpan</button>
-                </form>
+                        <button type="submit" class="btn-save-status">Simpan</button>
+                    </form>
 
+                </div>
             </div>
         </div>
-    </div>
 
+        <div class="product-box mt-6">
+            <h3>Produk yang Dijual</h3>
 
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Produk</th>
+                        <th>Harga</th>
+                        <th>Stok</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
 
-
-    <!-- DAFTAR PRODUK SELLER -->
-    <div class="product-box">
-        <h3>Produk yang Dijual</h3>
-
-        <table class="product-table">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Nama Produk</th>
-                <th>Harga</th>
-                <th>Stok</th>
-                <th>Aksi</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Beras Premium 5kg</td>
-                <td>Rp 60.000</td>
-                <td>40</td>
-                <td><a href="#" class="btn-delete">Hapus</a></td>
-              </tr>
-
-              <tr>
-                <td>2</td>
-                <td>Sayur Organik Mix</td>
-                <td>Rp 25.000</td>
-                <td>22</td>
-                <td><a href="#" class="btn-delete">Hapus</a></td>
-              </tr>
-
-              <tr>
-                <td>3</td>
-                <td>Bawang Merah 1kg</td>
-                <td>Rp 33.000</td>
-                <td>16</td>
-                <td><a href="#" class="btn-delete">Hapus</a></td>
-              </tr>
-
-            </tbody>
-        </table>
-    </div>
-  </main>
+                <tbody>
+                    @forelse($products as $idx => $product)
+                        <tr>
+                            <td>{{ $idx + 1 }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+                            <td>{{ $product->stock }}</td>
+                            <td>
+                                <form action="{{ route('admin.sellers.productDestroy', [$user->id, $product->id]) }}"
+                                    method="POST" onsubmit="return confirm('Hapus produk ini?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn-delete">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="p-4 text-center">Belum ada produk</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+    </main>
 </x-layoutAdmin>

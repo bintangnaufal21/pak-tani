@@ -4,8 +4,11 @@ use App\Http\Controllers\Admin\BuyerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\FinanceController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\SellerController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Buyer\CartController;
 use App\Http\Controllers\Buyer\OrderController as BuyerOrderController;
 use App\Http\Controllers\Buyer\ProductViewController;
@@ -64,11 +67,21 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->grou
     Route::post('/orders/{order}/tolak', [AdminOrderController::class, 'rejectPayment'])->name('orders.reject');
 
     Route::get('/data/buyer', [BuyerController::class, 'index'])->name('buyer');
+    Route::get('/data/buyer/{id}/riwayat', [BuyerController::class, 'riwayat']);
+
     Route::get('/data/seller', [SellerController::class, 'index'])->name('dataseller');
-    Route::get('/data/seller/detail', [SellerController::class, 'show'])->name('sellerdetail');
-    Route::get('/data/keungan', [DashboardController::class, 'keuangan'])->name('keuangan');
-    Route::get('/laporan', [DashboardController::class, 'laporan'])->name('laporan');
-    Route::get('/pengaturan', [DashboardController::class, 'pengaturan'])->name('pengaturan');
+    Route::get('/data/seller/{user}', [SellerController::class, 'show'])->name('sellerdetail');
+    Route::post('/data/seller/{user}/status', [SellerController::class, 'updateStatus'])->name('sellers.updateStatus');
+    Route::delete('/data/seller/{user}/product/{product}', [SellerController::class, 'productDestroy'])->name('sellers.productDestroy');
+
+    Route::get('/keuangan', [FinanceController::class, 'index'])->name('keuangan');
+    Route::post('/keuangan/payout/{seller}', [FinanceController::class, 'payout'])->name('keuangan.payout');
+
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan');
+    
+    Route::get('/pengaturan', [SettingController::class, 'index'])->name('pengaturan');
+
+
 });
 
 /* Seller */

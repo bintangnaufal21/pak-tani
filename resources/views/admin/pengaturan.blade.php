@@ -18,9 +18,8 @@
                     <tr>
                         <td>{{ $admin->name }}</td>
                         <td>{{ $admin->email }}</td>
-                        <td>{{ $admin->address}}</td>
+                        <td>{{ $admin->address }}</td>
                     </tr>
-
                 </tbody>
             </table>
 

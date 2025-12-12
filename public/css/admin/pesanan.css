@@ -1,84 +1,91 @@
 .content {
-  margin-left: 260px;
-  padding: 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9f9;
-  min-height: 100vh;
+    margin-left: 260px;
+    padding: 30px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
 }
 
 h2 {
-  margin-bottom: 25px;
-  color: #2c3e50;
-  font-size: 24px;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-size: 24px;
 }
 
 .table-wrapper {
-  background: #fff;
-  padding: 25px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-  overflow-x: auto;
+    background: #fff;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
 }
 
 .pesanan-table {
-  width: 100%;
-  border-collapse: collapse;
-  min-width: 700px;
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px;
 }
 
 .pesanan-table th,
 .pesanan-table td {
-  padding: 14px 18px;
-  border-bottom: 1px solid #eee;
-  text-align: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
 }
 
 .pesanan-table th {
-  background: #f4f6f8;
-  font-weight: 600;
-  color: #34495e;
+    background: #f4f6f8;
+    font-weight: 600;
+    color: #34495e;
 }
 
 .pesanan-table tr:hover {
-  background-color: #f1f5f8;
+    background-color: #f1f5f8;
 }
 
 .btn-detail {
-  background: #3498db;
-  color: white;
-  padding: 6px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 14px;
-  transition: background 0.3s;
+    background: #3498db;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.3s;
 }
 
 .btn-detail:hover {
-  background: #2980b9;
+    background: #2980b9;
 }
 
 /* STATUS COLORS */
-.status {
-  padding: 6px 12px;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 500;
-  display: inline-block;
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    color: white;
+    display: inline-block;
 }
 
-.status.menunggu {
-  background: #f1c40f;
-}
+/* WARNA STATUS */
+.status-pending {
+    background: #cbd5e1;
+    color: #1e293b;
+} /* abu-abu */
+.status-paid {
+    background: #22c55e;
+} /* hijau */
+.status-processing {
+    background: #f59e0b;
+} /* kuning */
+.status-shipped {
+    background: #3b82f6;
+} /* biru */
+.status-completed {
+    background: #16a34a;
+} /* hijau gelap */
+.status-cancelled {
+    background: #ef4444;
+} /* merah */
 
-.status.diproses {
-  background: #2980b9;
-}
 
-.status.dikirim {
-  background: #8e44ad;
-}
-
-.status.selesai {
-  background: #27ae60;
-}
