@@ -1,40 +1,28 @@
-FROM php:8.2-apache
+FROM php:8.2-fpm
 
-# Disable MPM lain (PASTIIN CUMA PREFORK)
-RUN a2dismod mpm_event mpm_worker || true
-RUN a2enmod mpm_prefork rewrite
-
-# Install dependencies
+# System deps
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    curl \
-    libzip-dev
+    git unzip libpng-dev libonig-dev libxml2-dev zip curl \
+ && rm -rf /var/lib/apt/lists/*
 
 # PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-install pdo_mysql mbstring bcmath gd
 
-# Set document root ke public
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
-
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
-    /etc/apache2/sites-available/*.conf \
-    /etc/apache2/apache2.conf
+# Workdir
+WORKDIR /var/www/html
 
 # Copy app
-WORKDIR /var/www/html
 COPY . .
 
 # Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
 
-# Permission
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
+# Permissions
+RUN chown -R www-data:www-data storage bootstrap/cache
 
-EXPOSE 80
+# Expose Railway port (PHP built-in server)
+EXPOSE 8080
+
+# Start PHP built-in server (NO APACHE)
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
