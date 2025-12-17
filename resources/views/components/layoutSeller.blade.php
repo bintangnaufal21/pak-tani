@@ -9,6 +9,7 @@
     <title>{{ $title }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
         /* Safety for disabled buttons */
         button[disabled],
