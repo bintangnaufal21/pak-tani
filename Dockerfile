@@ -26,3 +26,8 @@ EXPOSE 8080
 
 # Start PHP built-in server (NO APACHE)
 CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
+CMD php artisan key:generate --force || true && \
+    php artisan migrate --force || true && \
+    php artisan config:clear && \
+    php artisan config:cache && \
+    php -S 0.0.0.0:8080 -t public
