@@ -31,5 +31,4 @@ CMD php artisan key:generate --force || true && \
     php artisan config:clear && \
     php artisan config:cache && \
     php -S 0.0.0.0:8080 -t public
-CMD php artisan storage:link || true && \
-    php -S 0.0.0.0:8080 -t public
+
