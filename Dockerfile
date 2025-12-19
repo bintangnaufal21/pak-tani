@@ -28,10 +28,9 @@ EXPOSE 8080
 CMD ["php", "-S", "0.0.0.0:8080", "-t", "public"]
 CMD php artisan key:generate --force || true && \
     php artisan migrate --force || true && \
+    php artisan db:seed --force && \
     php artisan config:clear && \
     php artisan config:cache && \
     php -S 0.0.0.0:8080 -t public
-    php artisan migrate --force && \
-    php artisan db:seed --force && \
-    php -S 0.0.0.0:8080 -t public
+
 
